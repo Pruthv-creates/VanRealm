@@ -21,8 +21,23 @@ const RoleRoute = ({ element, requiredRole }: RoleRouteProps) => {
         setStatus("denied");
         return;
       }
-      const userDoc = await getDoc(doc(db, "users", user.uid));
-      const role = userDoc.data()?.role;
+
+      let role: string | undefined;
+
+      // First check Users collection
+      const userDoc = await getDoc(doc(db, "Users", user.uid));
+      if (userDoc.exists()) {
+        role = userDoc.data()?.role;
+      }
+
+      // If not found, check Admin collection
+      if (!role) {
+        const adminDoc = await getDoc(doc(db, "Admin", user.uid));
+        if (adminDoc.exists()) {
+          role = "admin"; // or adminDoc.data()?.role if you store it
+        }
+      }
+
       if (role === requiredRole) {
         setStatus("allowed");
       } else {
