@@ -12,9 +12,6 @@ class PlantCard extends StatelessWidget {
 
     return InkWell(
       borderRadius: BorderRadius.circular(16),
-      onTap: () {
-        // Navigate to detail page later
-      },
       child: Card(
         elevation: 2,
         shape: RoundedRectangleBorder(

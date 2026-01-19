@@ -61,7 +61,6 @@ class PlantDetailsPage extends StatelessWidget {
               SizedBox(
                 height: 300,
                 child: ModelViewer(
-                  backgroundColor: Theme.of(context).colorScheme.inverseSurface,
                   src: plant.model3D!,
                   alt: "${plant.commonName} 3D Model",
                   ar: true,

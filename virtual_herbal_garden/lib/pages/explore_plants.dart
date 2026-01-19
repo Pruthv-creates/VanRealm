@@ -130,7 +130,7 @@ class _ExplorePlantsPageState extends State<ExplorePlantsPage> {
                   ),
                   itemCount: filteredPlants.length,
                   itemBuilder: (context, index) {
-                    return GestureDetector(
+                    return InkWell(
                       onTap: () {
                         Navigator.push(
                           context,
