@@ -67,6 +67,7 @@ flutter:
   assets:
     - assets/3dModels/ginger.glb
     - assets/3dModels/licorice.glb
+    - assets/3dModels/turmeric.glb
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
