@@ -72,12 +72,55 @@ class PlantDetailsPage extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            _buildList("AYUSH Systems", plant.ayushSystems),
-            _buildList("Medicinal Properties", plant.medicinalProperties),
-            _buildList("Therapeutic Uses", plant.therapeuticUses),
-            _buildList("Precautions", plant.precautions),
-            _buildList("Disease Categories", plant.diseaseCategories),
-            _buildList("Plant Parts Used", plant.plantPartsUsed),
+            Center(
+              child: Card(
+                elevation: 10,
+                color: Theme.of(context).colorScheme.surface,
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          _buildList("AYUSH Systems", plant.ayushSystems),
+                          Expanded(child: SizedBox()),
+                        ],
+                      ),
+                      Row(
+                    children: [
+                      _buildList("Medicinal Properties", plant.medicinalProperties),
+                      Expanded(child: SizedBox()),
+                      ],
+                    ),
+                    Row(
+                    children: [
+                      _buildList("Therapeutic Uses", plant.therapeuticUses),
+                      Expanded(child: SizedBox()),
+                      ],
+                    ),
+                    Row(
+                    children: [
+                     _buildList("Precautions", plant.precautions),
+                      Expanded(child: SizedBox()),
+                      ],
+                    ),
+                    Row(
+                    children: [
+                      _buildList("Disease Categories", plant.diseaseCategories),
+                      Expanded(child: SizedBox()),
+                      ],
+                    ),
+                     Row(
+                    children: [
+                      _buildList("Plant Parts Used", plant.plantPartsUsed),
+                      Expanded(child: SizedBox()),
+                      ],
+                      ),
+                    ],
+                  )
+                ),
+              ),
+            ),
           ],
         ),
       ),
