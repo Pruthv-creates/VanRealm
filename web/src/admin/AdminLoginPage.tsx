@@ -27,7 +27,7 @@ const AdminLoginPage = () => {
       // Ensure Firestore doc exists with role: "admin"
       const adminDoc = await getDoc(doc(db, "Admin", uid));
       if (!adminDoc.exists()) {
-        await setDoc(doc(db, "Users", uid), {
+        await setDoc(doc(db, "Admin", uid), {
           email,
           role: "admin",
           bookmarks: [],

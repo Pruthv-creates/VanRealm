@@ -13,6 +13,7 @@ import AdminDashboard from "./admin/AdminDashboard";
 import UserLoginPage from "./user/UserLoginPage";
 import UserDashboard from "./user/UserDashboard";
 import RoleRoute from "./routes/RoleRoute";
+import ProfileRedirect from "./components/ProfileRedirect";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Routes>
             {/* Public routes */}
             <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<ProfileRedirect />} />
             <Route path="/explore" element={<ExplorePlants />} />
             <Route path="/plant/:id" element={<PlantDetail />} />
             <Route path="/tours" element={<Tours />} />
