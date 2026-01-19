@@ -12,6 +12,49 @@ class HomePage extends StatelessWidget {
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
 
+    Widget _featureCard(
+  BuildContext context, {
+  required IconData icon,
+  required String title,
+  required String subtitle,
+  required VoidCallback onTap,
+}) {
+  final colors = Theme.of(context).colorScheme;
+
+  return Expanded(
+    child: InkWell(
+      borderRadius: BorderRadius.circular(16),
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 6),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: colors.secondaryContainer,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          children: [
+            Icon(icon, size: 34, color: colors.onSecondaryContainer),
+            const SizedBox(height: 10),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              subtitle,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+
     return Scaffold(
       drawer: MyDrawer(),
       appBar: AppBar(
@@ -30,120 +73,161 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+  padding: const EdgeInsets.all(16),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+
+      /// 🌿 HERO CARD
+      Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primaryContainer,
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// Header
-            Text(
-              'Discover AYUSH Medicinal Plants',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 21,
-                
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              'Explore traditional herbal knowledge through interactive learning',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            /// Search Bar
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Search plants, diseases, or uses',
-                prefixIcon: const Icon(Icons.search),
-                filled: true,
-                fillColor: Theme.of(context).colorScheme.primary,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
-                  ),
-              ),
-              onSubmitted: (query) {
-                if (query.trim().isEmpty) return;
-
-                Navigator.pushNamed(
-                context,
-                '/explore_plants',
-                arguments: query.trim(),
-                );
-              },
-            ),
-
-            const SizedBox(height: 25),
-
-            /// Feature Cards
             Row(
               children: [
-                _featureCard(
-                  context,
-                  icon: Icons.local_florist,
-                  title: 'Explore Plants',
-                  onTap: () {
-                    Navigator.pushNamed(context, '/explore_plants');
-                  },
-                ),
-                _featureCard(
-                  context,
-                  icon: Icons.map,
-                  title: 'Guided Tours',
-                  onTap: () {
-                    // TODO: add tours route
-                  },
-                ),
-                _featureCard(
-                  context,
-                  icon: Icons.bookmark,
-                  title: 'Bookmarks.    ',
-                  onTap: () {
-                    // TODO: add bookmarks route
-                  },
+                Icon(Icons.eco,
+                    size: 36,
+                    color: Theme.of(context).colorScheme.inversePrimary),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    'Virtual Herbal Garden',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .inversePrimary,
+                    ),
+                  ),
                 ),
               ],
-            ),
-
-            const SizedBox(height: 30),
-
-            /// Health Themes
-            Text(
-              'Browse by Health Theme',
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
             ),
             const SizedBox(height: 12),
-
-            Wrap(
-              spacing: 10,
-              runSpacing: 10,
-              children: [
-                _themeChip(context, 'Immunity'),
-                _themeChip(context, 'Digestion'),
-                _themeChip(context, 'Respiratory'),
-                _themeChip(context, 'Stress Relief'),
-                _themeChip(context, 'Skin Care'),
-              ],
+            Text(
+              'Explore medicinal plants used in AYUSH systems through interactive 2D/3D models, curated knowledge, and guided learning.',
+              style: TextStyle(
+                fontSize: 15,
+                color:
+                    Theme.of(context).colorScheme.inversePrimary,
+              ),
             ),
-          ElevatedButton(
-          onPressed: () async {
-          await SeedDataService().addPlants();
-          ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Plants added to Firestore')),
-    );
-  },
-  child: Text('Seed Plants (Admin)',style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),),
-),
-
           ],
         ),
       ),
+
+      const SizedBox(height: 24),
+
+      /// 🔍 SEARCH
+      TextField(
+        decoration: InputDecoration(
+          hintText: 'Search plants, diseases, or uses',
+          prefixIcon: const Icon(Icons.search),
+          filled: true,
+          fillColor: Theme.of(context).colorScheme.primary,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: BorderSide.none,
+          ),
+        ),
+        onSubmitted: (query) {
+          if (query.trim().isEmpty) return;
+          Navigator.pushNamed(
+            context,
+            '/explore_plants',
+            arguments: query.trim(),
+          );
+        },
+      ),
+
+      const SizedBox(height: 28),
+
+      /// 🚀 FEATURES
+      Text(
+        'Explore & Learn',
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+      ),
+      const SizedBox(height: 14),
+
+      Row(
+        children: [
+          _featureCard(
+            context,
+            icon: Icons.local_florist,
+            title: 'Explore Plants',
+            subtitle: '2D / 3D plant views',
+            onTap: () {
+              Navigator.pushNamed(context, '/explore_plants');
+            },
+          ),
+          _featureCard(
+            context,
+            icon: Icons.map,
+            title: 'Guided Tours',
+            subtitle: 'Learn by themes',
+            onTap: () {},
+          ),
+          _featureCard(
+            context,
+            icon: Icons.bookmark,
+            title: 'Bookmarks_          ',
+            subtitle: 'Save & revisit',
+            onTap: () {},
+          ),
+        ],
+      ),
+
+      const SizedBox(height: 32),
+
+      /// 🌱 THEMES
+      Text(
+        'Start with a Health Theme',
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+      ),
+      const SizedBox(height: 6),
+      Text(
+        'Curated collections of plants for focused learning',
+        style: Theme.of(context).textTheme.bodySmall,
+      ),
+      const SizedBox(height: 14),
+
+      Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        children: [
+          _themeChip(context, 'Immunity'),
+          _themeChip(context, 'Digestion'),
+          _themeChip(context, 'Respiratory'),
+          _themeChip(context, 'Stress Relief'),
+          _themeChip(context, 'Skin Care'),
+        ],
+      ),
+
+      const SizedBox(height: 30),
+
+      /// ⚠️ ADMIN (OPTIONAL)
+      ElevatedButton(
+        onPressed: () async {
+          await SeedDataService().addPlants();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Plants added to Firestore')),
+          );
+        },
+        child: const Text('Seed Plants (Admin)'),
+      ),
+    ],
+  ),
+),
+
     );
   }
 
@@ -184,6 +268,8 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
+  
 
   /// Theme Chip
   Widget _themeChip(BuildContext context, String theme) {
