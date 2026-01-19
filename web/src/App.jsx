@@ -1,84 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "./firebase";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import ExplorePlants from './pages/ExplorePlants';
+import PlantDetail from './pages/PlantDetail';
+import Tours from './pages/Tours';
 
-const PlantList = () => {
-  const [plants, setPlants] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchPlants = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "plants"));
-        const plantData = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setPlants(plantData);
-      } catch (error) {
-        console.error("Error fetching plants:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPlants();
-  }, []);
-
-  if (loading) {
-    return <p>Loading plants...</p>;
-  }
-
+function App() {
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>🌿 Medicinal Plants (AYUSH)</h2>
-
-      {plants.length === 0 && <p>No plants found.</p>}
-
-      {plants.map(plant => (
-        <div
-          key={plant.id}
-          style={{
-            border: "1px solid #ccc",
-            borderRadius: "10px",
-            padding: "15px",
-            marginBottom: "15px",
-          }}
-        >
-          <h3>{plant.commonName}</h3>
-          <p><strong>Botanical Name:</strong> {plant.botanicalName}</p>
-
-          <p>
-            <strong>AYUSH Systems:</strong>{" "}
-            {plant.ayushSystems?.join(", ")}
-          </p>
-
-          <p>
-            <strong>Disease Categories:</strong>{" "}
-            {plant.diseaseCategories?.join(", ")}
-          </p>
-
-          <p>
-            <strong>Medicinal Properties:</strong>
-          </p>
-          <ul>
-            {plant.medicinalProperties?.map((prop, index) => (
-              <li key={index}>{prop}</li>
-            ))}
-          </ul>
-
-          {plant.media?.images?.length > 0 && (
-            <img
-              src={plant.media.images[0]}
-              alt={plant.commonName}
-              width="200"
-              style={{ borderRadius: "8px" }}
-            />
-          )}
-        </div>
-      ))}
-    </div>
+    <Router>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <Navbar />
+        <main style={{ flex: 1, paddingBottom: '40px' }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/explore" element={<ExplorePlants />} />
+            <Route path="/plant/:id" element={<PlantDetail />} />
+            <Route path="/tours" element={<Tours />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
-};
+}
 
-export default PlantList;
+export default App;
