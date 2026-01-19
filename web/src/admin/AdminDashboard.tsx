@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import HandlePlantOperations from "./adminpages/HandlePlantOperations";
 
 const AdminDashboard = () => {
   const [user, setUser] = useState<any>(null);
@@ -23,6 +24,7 @@ const AdminDashboard = () => {
       {user && <p>Welcome {user.email}</p>}
       <button onClick={handleLogout}>Logout</button>
       {/* Add plant management buttons here */}
+      <HandlePlantOperations />
     </div>
   );
 };
