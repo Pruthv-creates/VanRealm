@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -24,17 +25,18 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "P R O F I L E",
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.inversePrimary,
-            fontWeight: FontWeight.w600,
-          ),
+        title: const Text(
+          "Profile",
+          style: TextStyle(fontWeight: FontWeight.w700),
         ),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        elevation: 10,
+        backgroundColor: colors.surface,
+        foregroundColor: colors.onSurface,
+        elevation: 0,
+        centerTitle: true,
       ),
       body: currentUser == null
           ? const Center(child: Text("Please login"))
@@ -46,9 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 }
 
                 if (snapshot.hasError) {
-                  return Center(
-                    child: Text("Error: ${snapshot.error}"),
-                  );
+                  return Center(child: Text("Error: ${snapshot.error}"));
                 }
 
                 if (!snapshot.hasData || !snapshot.data!.exists) {
@@ -57,50 +57,74 @@ class _ProfilePageState extends State<ProfilePage> {
 
                 final user = snapshot.data!.data()!;
 
-                return Padding(
-                  padding: const EdgeInsets.all(20.0),
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primary,
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        padding: const EdgeInsets.all(20),
-                        child: Icon(
-                          Icons.person,
-                          size: 90,
-                          color:
-                              Theme.of(context).colorScheme.inversePrimary,
+                      /// 🧑 PROFILE HEADER
+                      Center(
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 110,
+                              width: 110,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: colors.primaryContainer,
+                              ),
+                              child: Icon(
+                                Icons.person,
+                                size: 60,
+                                color: colors.onPrimaryContainer,
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            Text(
+                              user['username'] ?? "User",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              user['email'] ?? "",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(color: colors.onSurfaceVariant),
+                            ),
+                          ],
                         ),
                       ),
 
-                      const SizedBox(height: 50),
+                      const SizedBox(height: 36),
 
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "W E L C O M E !",
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+                      /// 📄 INFO SECTION
+                      Text(
+                        "Account Information",
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
 
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 16),
 
                       _infoTile(
                         context,
-                        label: "USER",
+                        icon: Icons.person_outline,
+                        label: "Username",
                         value: user['username'] ?? "N/A",
                       ),
 
-                      const SizedBox(height: 25),
+                      const SizedBox(height: 12),
 
                       _infoTile(
                         context,
-                        label: "EMAIL",
+                        icon: Icons.email_outlined,
+                        label: "Email",
                         value: user['email'] ?? "N/A",
                       ),
                     ],
@@ -111,34 +135,47 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  /// ℹ️ Info Tile
   Widget _infoTile(
     BuildContext context, {
+    required IconData icon,
     required String label,
     required String value,
   }) {
+    final colors = Theme.of(context).colorScheme;
+
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary,
-        borderRadius: BorderRadius.circular(12),
+        color: colors.surface,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: colors.outlineVariant),
       ),
-      padding: const EdgeInsets.all(20),
       child: Row(
         children: [
-          Text(
-            "$label:  ",
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          Icon(icon, color: colors.primary),
+          const SizedBox(width: 12),
           Expanded(
-            child: Text(
-              value,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
-              overflow: TextOverflow.ellipsis,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelMedium
+                      ?.copyWith(color: colors.onSurfaceVariant),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  value,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(fontWeight: FontWeight.w600),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
         ],

@@ -46,7 +46,7 @@ class _ExplorePlantsPageState extends State<ExplorePlantsPage> {
             padding: const EdgeInsets.all(12),
             child: TextField(
               decoration: const InputDecoration(
-                hintText: 'Search plants',
+                hintText: 'Search plants or Aliments',
                 prefixIcon: Icon(Icons.search),
               ),
               onChanged: (value) {
