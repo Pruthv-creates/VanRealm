@@ -1,16 +1,18 @@
+@import "tailwindcss";
+
 :root {
-  --color-soft-green: #9A8D5B;
-  --color-primary: #556B2F; /* Dark Olive Green */
-  --color-secondary: #9A8D5B; /* Soft Green */
-  --color-accent: #E8F5E9; /* Light Green background */
-  --color-earthy-beige: #F0EAD8;
-  --color-white: #FFFFFF;
-  --color-text-dark: #2C3E50;
+  --color-soft-green: #9a8d5b;
+  --color-primary: #556b2f; /* Dark Olive Green */
+  --color-secondary: #9a8d5b; /* Soft Green */
+  --color-accent: #e8f5e9; /* Light Green background */
+  --color-earthy-beige: #f0ead8;
+  --color-white: #ffffff;
+  --color-text-dark: #2c3e50;
   --color-text-light: #555555;
-  --color-card-bg: #FDFBF7; /* Slightly lighter than beige for cards */
-  
-  --font-main: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  
+  --color-card-bg: #fdfbf7; /* Slightly lighter than beige for cards */
+
+  --font-main: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+
   --shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.05);
   --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.1);
   --radius-md: 16px;
@@ -59,14 +61,29 @@ button {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--color-primary);
   line-height: 1.2;
 }
 
-h1 { font-size: 3rem; font-weight: 800; }
-h2 { font-size: 2rem; font-weight: 700; margin-bottom: 24px; }
-h3 { font-size: 1.5rem; font-weight: 600; }
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 
 /* Buttons */
 .btn {
