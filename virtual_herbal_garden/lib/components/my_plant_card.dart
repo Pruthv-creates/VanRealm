@@ -4,7 +4,7 @@ import 'package:virtual_herbal_garden/models/plant.dart';
 class PlantCard extends StatelessWidget {
   final Plant plant;
 
-  const PlantCard({required this.plant});
+  const PlantCard({super.key, required this.plant});
 
   @override
   Widget build(BuildContext context) {

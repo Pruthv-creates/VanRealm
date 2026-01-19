@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
                 hintText: 'Search plants, diseases, or uses',
                 prefixIcon: const Icon(Icons.search),
                 filled: true,
-                fillColor: colors.surfaceVariant,
+                fillColor: colors.surfaceContainerHighest,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
