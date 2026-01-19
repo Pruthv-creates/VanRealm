@@ -15,7 +15,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: AppBar(
-        title: const Text('Virtual Herbal Garden'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Text('Virtual Herbal Garden',style: TextStyle(
+          fontWeight: FontWeight.w700, 
+        ),),
         centerTitle: true,
         actions: [
           IconButton(
@@ -34,15 +37,18 @@ class HomePage extends StatelessWidget {
             /// Header
             Text(
               'Discover AYUSH Medicinal Plants',
-              style: theme.textTheme.headlineSmall?.copyWith(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
+                fontSize: 21,
+                
               ),
             ),
             const SizedBox(height: 6),
             Text(
               'Explore traditional herbal knowledge through interactive learning',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: colors.onSurfaceVariant,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700
               ),
             ),
 
@@ -54,7 +60,7 @@ class HomePage extends StatelessWidget {
                 hintText: 'Search plants, diseases, or uses',
                 prefixIcon: const Icon(Icons.search),
                 filled: true,
-                fillColor: colors.surfaceContainerHighest,
+                fillColor: Theme.of(context).colorScheme.primary,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -95,7 +101,7 @@ class HomePage extends StatelessWidget {
                 _featureCard(
                   context,
                   icon: Icons.bookmark,
-                  title: 'Bookmarks',
+                  title: 'Bookmarks.    ',
                   onTap: () {
                     // TODO: add bookmarks route
                   },
@@ -162,13 +168,13 @@ class HomePage extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Icon(icon, size: 32, color: colors.onPrimaryContainer),
+              Icon(icon, size: 32, color: Theme.of(context).colorScheme.inversePrimary),
               const SizedBox(height: 8),
               Text(
                 title,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: colors.onPrimaryContainer,
+                style: TextStyle(
+                      color: Theme.of(context).colorScheme.inversePrimary,
                       fontWeight: FontWeight.w600,
                     ),
               ),
