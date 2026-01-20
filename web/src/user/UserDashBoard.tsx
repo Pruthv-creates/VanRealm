@@ -4,6 +4,7 @@ import { doc, getDoc, collection, query, where, orderBy, getDocs, limit } from "
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { Clock, LogOut, Package, ShoppingBag, Calendar } from "lucide-react";
+import './UserDashBoard.css';
 
 interface VisitHistoryItem {
   plantId: string;
@@ -52,12 +53,10 @@ const UserDashboard = () => {
       }
 
       try {
-        // Fetch visit history
         const userDoc = await getDoc(doc(db, "Users", uid));
         const visits = userDoc.data()?.visitHistory || [];
         setVisitHistory(visits);
 
-        // Fetch recent orders
         const ordersQuery = query(
           collection(db, "orders"),
           where("userId", "==", uid),
@@ -140,60 +139,47 @@ const UserDashboard = () => {
     });
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'confirmed':
-        return 'bg-green-100 text-green-700';
-      case 'pending':
-        return 'bg-yellow-100 text-yellow-700';
-      case 'shipped':
-        return 'bg-blue-100 text-blue-700';
-      case 'delivered':
-        return 'bg-purple-100 text-purple-700';
-      default:
-        return 'bg-gray-100 text-gray-700';
-    }
+  const getStatusClass = (status: string) => {
+    const statusMap: { [key: string]: string } = {
+      'confirmed': 'status-confirmed',
+      'pending': 'status-pending',
+      'payment_submitted': 'status-payment_submitted',
+      'shipped': 'status-shipped',
+      'delivered': 'status-delivered'
+    };
+    return statusMap[status] || 'status-default';
   };
 
   const groupedVisits = groupVisitsByDate(visitHistory);
 
   return (
-    <div className="min-h-screen bg-[#f0ead8] p-8">
-      <div className="container mx-auto">
+    <div className="dashboard-page">
+      <div className="dashboard-container">
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-12">
+        <div className="dashboard-header">
           <div>
-            <p className="text-[#556b2f]/80 text-lg">
-              Welcome back, <span className="font-semibold">{username}</span>!
+            <p className="welcome-text">
+              Welcome back, <span className="username">{username}</span>!
             </p>
           </div>
-          <button
-            onClick={handleLogout}
-            className="mt-4 md:mt-0 flex items-center gap-2 bg-white/50 hover:bg-white/80 text-[#556b2f] px-6 py-2.5 rounded-full transition-all shadow-sm border border-[#556b2f]/20 font-medium"
-          >
+          <button onClick={handleLogout} className="logout-btn">
             <LogOut size={18} />
             Logout
           </button>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-4 mb-6">
+        <div className="tabs-container">
           <button
             onClick={() => setActiveTab('visits')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${activeTab === 'visits'
-                ? 'bg-[#556b2f] text-white shadow-lg'
-                : 'bg-white/50 text-[#556b2f] hover:bg-white/80'
-              }`}
+            className={`tab-btn ${activeTab === 'visits' ? 'active' : 'inactive'}`}
           >
             <Clock size={20} />
             Recently Visited
           </button>
           <button
             onClick={() => setActiveTab('orders')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${activeTab === 'orders'
-                ? 'bg-[#556b2f] text-white shadow-lg'
-                : 'bg-white/50 text-[#556b2f] hover:bg-white/80'
-              }`}
+            className={`tab-btn ${activeTab === 'orders' ? 'active' : 'inactive'}`}
           >
             <Package size={20} />
             Order History
@@ -201,69 +187,65 @@ const UserDashboard = () => {
         </div>
 
         {/* Content Section */}
-        <div className="bg-[#fdfbf7] rounded-3xl p-8 shadow-sm border border-[#556b2f]/5 min-h-[400px]">
+        <div className="content-card">
           {loading ? (
-            <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#556b2f]"></div>
+            <div className="loading-container">
+              <div className="spinner"></div>
             </div>
           ) : activeTab === 'visits' ? (
             // Visited Plants Section
             visitHistory.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-20 text-center">
-                <div className="w-24 h-24 bg-[#556b2f]/10 rounded-full flex items-center justify-center mb-6">
-                  <Clock size={48} className="text-[#556b2f]/40" />
+              <div className="empty-state">
+                <div className="empty-icon">
+                  <Clock size={48} />
                 </div>
-                <h3 className="text-xl font-medium text-[#556b2f] mb-2">
+                <h3 className="empty-title">
                   No visit history yet
                 </h3>
-                <p className="text-[#556b2f]/60 mb-8 max-w-md">
+                <p className="empty-description">
                   Start exploring our collection of medicinal plants. Your recently viewed plants will appear here!
                 </p>
-                <Link
-                  to="/explore"
-                  className="bg-[#556b2f] text-white px-8 py-3 rounded-full hover:bg-[#3e4e23] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-medium"
-                >
+                <Link to="/explore" className="cta-btn">
                   Explore Plants
                 </Link>
               </div>
             ) : (
-              <div className="space-y-8">
+              <div className="visits-container">
                 {Object.entries(groupedVisits).map(([period, visits]) =>
                   visits.length > 0 ? (
-                    <div key={period}>
-                      <h3 className="text-lg font-semibold text-[#556b2f] mb-4 flex items-center gap-2">
+                    <div key={period} className="period-section">
+                      <h3 className="period-title">
                         <Calendar size={20} />
                         {period}
                       </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      <div className="visits-grid">
                         {visits.map((visit, index) => (
                           <Link
                             key={`${visit.plantId}-${index}`}
                             to={`/plant/${visit.plantId}`}
-                            className="bg-white rounded-xl p-4 hover:shadow-lg transition-all border border-[#556b2f]/10 hover:border-[#556b2f]/30"
+                            className="visit-card"
                           >
-                            <div className="flex gap-4">
-                              <div className="w-20 h-20 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+                            <div className="visit-card-content">
+                              <div className="plant-image">
                                 {visit.plantImage ? (
                                   <img
                                     src={visit.plantImage}
                                     alt={visit.plantName}
-                                    className="w-full h-full object-cover"
                                   />
                                 ) : (
-                                  <div className="w-full h-full flex items-center justify-center text-gray-400">
+                                  <div className="plant-image-placeholder">
                                     🌿
                                   </div>
                                 )}
                               </div>
-                              <div className="flex-grow min-w-0">
-                                <h4 className="font-semibold text-[#556b2f] truncate">
+                              <div className="visit-info">
+                                <h4 className="plant-name">
                                   {visit.plantName}
                                 </h4>
-                                <p className="text-sm text-gray-500 mt-1">
+                                <p className="visit-time">
                                   {formatTime(visit.visitedAt)}
                                 </p>
-                                <p className="text-xs text-gray-400 mt-1">
+                                <p className="visit-date">
                                   {formatDate(visit.visitedAt)}
                                 </p>
                               </div>
@@ -279,75 +261,68 @@ const UserDashboard = () => {
           ) : (
             // Orders Section
             orders.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-20 text-center">
-                <div className="w-24 h-24 bg-[#556b2f]/10 rounded-full flex items-center justify-center mb-6">
-                  <Package size={48} className="text-[#556b2f]/40" />
+              <div className="empty-state">
+                <div className="empty-icon">
+                  <Package size={48} />
                 </div>
-                <h3 className="text-xl font-medium text-[#556b2f] mb-2">
+                <h3 className="empty-title">
                   No orders yet
                 </h3>
-                <p className="text-[#556b2f]/60 mb-8 max-w-md">
+                <p className="empty-description">
                   You haven't placed any orders. Start shopping to see your order history here!
                 </p>
-                <Link
-                  to="/buy-plants"
-                  className="bg-[#556b2f] text-white px-8 py-3 rounded-full hover:bg-[#3e4e23] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-medium"
-                >
+                <Link to="/buy-plants" className="cta-btn">
                   Browse Plants
                 </Link>
               </div>
             ) : (
-              <div className="space-y-4">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-semibold text-[#556b2f] flex items-center gap-2">
+              <div>
+                <div className="orders-header">
+                  <h2 className="orders-title">
                     <Package size={24} />
                     Recent Orders
                   </h2>
-                  <Link
-                    to="/orders"
-                    className="text-[#556b2f] hover:underline font-medium"
-                  >
+                  <Link to="/orders" className="view-all-link">
                     View All Orders →
                   </Link>
                 </div>
-                {orders.map((order) => (
-                  <div
-                    key={order.id}
-                    className="bg-white rounded-xl p-6 border border-[#556b2f]/10 hover:shadow-lg transition-all"
-                  >
-                    <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-                      <div>
-                        <p className="text-sm text-gray-500 mb-1">Order ID</p>
-                        <p className="font-mono font-semibold text-[#556b2f]">
-                          {order.id.slice(0, 12)}...
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <div className="text-right">
-                          <p className="text-sm text-gray-500 mb-1">Date</p>
-                          <p className="font-semibold text-gray-700">
-                            {formatDate(order.createdAt)}
+                <div className="orders-list">
+                  {orders.map((order) => (
+                    <div key={order.id} className="order-card">
+                      <div className="order-header">
+                        <div className="order-id-section">
+                          <p className="order-label">Order ID</p>
+                          <p className="order-id">
+                            {order.id.slice(0, 12)}...
                           </p>
                         </div>
-                        <span className={`px-4 py-2 rounded-full text-sm font-bold ${getStatusColor(order.status)}`}>
-                          {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
-                        </span>
+                        <div className="order-meta">
+                          <div className="order-date-section">
+                            <p className="order-label">Date</p>
+                            <p className="order-date">
+                              {formatDate(order.createdAt)}
+                            </p>
+                          </div>
+                          <span className={`status-badge ${getStatusClass(order.status)}`}>
+                            {order.status.charAt(0).toUpperCase() + order.status.slice(1).replace('_', ' ')}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="order-footer">
+                        <div className="order-items-count">
+                          <ShoppingBag size={18} />
+                          <span>{order.items.length} item{order.items.length > 1 ? 's' : ''}</span>
+                        </div>
+                        <div className="order-total-section">
+                          <p className="order-total-label">Total Amount</p>
+                          <p className="order-total-amount">
+                            ₹{order.totalAmount.toFixed(2)}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <ShoppingBag size={18} />
-                        <span>{order.items.length} item{order.items.length > 1 ? 's' : ''}</span>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm text-gray-500">Total Amount</p>
-                        <p className="text-xl font-bold text-[#556b2f]">
-                          ₹{order.totalAmount.toFixed(2)}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             )
           )}
