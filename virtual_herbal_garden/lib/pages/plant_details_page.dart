@@ -108,12 +108,42 @@ class _PlantDetailsPageState extends State<PlantDetailsPage> {
                       padding: const EdgeInsets.all(12),
                       child: Column(
                         children: [
-                          _buildList("AYUSH Systems", widget.plant.ayushSystems),
-                          _buildList("Medicinal Properties", widget.plant.medicinalProperties),
-                          _buildList("Therapeutic Uses", widget.plant.therapeuticUses),
-                          _buildList("Precautions", widget.plant.precautions),
-                          _buildList("Disease Categories", widget.plant.diseaseCategories),
-                          _buildList("Plant Parts Used", widget.plant.plantPartsUsed),
+                          Row(
+                            children: [
+                              _buildList("AYUSH Systems", widget.plant.ayushSystems),
+                              Expanded(child: SizedBox())
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              _buildList("Medicinal Properties", widget.plant.medicinalProperties),
+                              Expanded(child: SizedBox())
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              _buildList("Therapeutic Uses", widget.plant.therapeuticUses),
+                              Expanded(child: SizedBox())
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              _buildList("Precautions", widget.plant.precautions),
+                              Expanded(child: SizedBox())
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              _buildList("Disease Categories", widget.plant.diseaseCategories),
+                              Expanded(child: SizedBox())
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              _buildList("Plant Parts Used", widget.plant.plantPartsUsed),
+                              Expanded(child: SizedBox())
+                            ],
+                          ),
                         ],
                       ),
                     ),
