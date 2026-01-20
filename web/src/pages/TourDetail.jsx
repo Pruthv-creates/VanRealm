@@ -310,8 +310,21 @@ const TourDetail = () => {
                             height="100%"
                             style={{ overflow: 'visible' }}
                         >
-                            <motion.path
+                            {/* Gray background path (full path) */}
+                            <path
                                 d={`M 0 175 ${events.map((_, i) => {
+                                    const x = (i * CARD_WIDTH) + (CARD_WIDTH / 2);
+                                    const y = i % 2 === 0 ? 100 : 250;
+                                    return `L ${x} ${y}`;
+                                }).join(' ')}`}
+                                fill="none"
+                                stroke="#4a5568"
+                                strokeWidth="3"
+                                opacity="0.3"
+                            />
+                            {/* Green progress path (only draws up to current position) */}
+                            <motion.path
+                                d={`M 0 175 ${events.slice(0, activeIndex + 1).map((_, i) => {
                                     const x = (i * CARD_WIDTH) + (CARD_WIDTH / 2);
                                     const y = i % 2 === 0 ? 100 : 250;
                                     return `L ${x} ${y}`;
@@ -321,7 +334,7 @@ const TourDetail = () => {
                                 strokeWidth="3"
                                 initial={{ pathLength: 0 }}
                                 animate={{ pathLength: 1 }}
-                                transition={{ duration: 2 }}
+                                transition={{ duration: 0.8, ease: "easeInOut" }}
                             />
                         </svg>
                     </div>
@@ -367,7 +380,12 @@ const TourDetail = () => {
 
                             {/* Dot on the road */}
                             <div
-                                className={`absolute w-4 h-4 rounded-full border-2 border-black transition-colors duration-300 ${activeIndex === index ? 'bg-yellow-400' : 'bg-green-600'}`}
+                                className={`absolute w-4 h-4 rounded-full border-2 border-black transition-colors duration-300 ${activeIndex === index
+                                    ? 'bg-yellow-400 scale-125'
+                                    : index < activeIndex
+                                        ? 'bg-green-500'
+                                        : 'bg-gray-500'
+                                    }`}
                                 style={{
                                     top: index % 2 === 0 ? '100px' : '250px',
                                     transform: 'translateY(-50%)'
