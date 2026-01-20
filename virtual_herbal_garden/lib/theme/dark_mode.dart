@@ -17,8 +17,8 @@ ThemeData darkMode = ThemeData(
     primaryContainer: Color(0xFF2E5A43),
 
     /// Secondary 
-    secondary: Color(0xFFD6C27A),
-    secondaryContainer: Color.fromARGB(255, 157, 144, 102),
+    secondary: Color.fromARGB(255, 113, 102, 61),
+    secondaryContainer: Color.fromARGB(255, 132, 117, 68),
 
     /// Accent / contrast
     inversePrimary: Color(0xFFEAF7EE),

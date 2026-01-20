@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage>
     'Respiratory',
     'Stress Relief',
     'Skin Care',
-    'More',
+    'Anxiety',
   ];
 
   @override
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                /// 🌿 HERO CARD
+                ///  HERO CARD
                 Container(
                   padding: const EdgeInsets.all(22),
                   decoration: BoxDecoration(
@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage>
                         style: TextStyle(
                           fontSize: 15,
                           height: 1.4,
-                          color: colors.inversePrimary.withOpacity(0.9),
+                          color: colors.inversePrimary.withValues(alpha: 0.9),
                         ),
                       ),
                     ],
@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage>
 
                 const SizedBox(height: 34),
 
-                /// 🚀 PRIMARY ACTIONS
+                ///  PRIMARY ACTIONS
                 Text(
                   'What would you like to do?',
                   style: Theme.of(context)
@@ -201,7 +201,7 @@ class _HomePageState extends State<HomePage>
 
                 const SizedBox(height: 42),
 
-                /// 🌱 THEMES
+                /// THEMES
                 Text(
                   'Start with a Health Theme',
                   style: Theme.of(context)
@@ -241,7 +241,7 @@ class _HomePageState extends State<HomePage>
 
                 const SizedBox(height: 36),
 
-                /// ⚠️ ADMIN (VISUALLY SEPARATED)
+                /// ADMIN (VISUALLY SEPARATED)
                 Divider(color: colors.outline.withOpacity(0.4)),
                 const SizedBox(height: 10),
 
@@ -285,7 +285,7 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  /// 🎴 Animated Feature Card
+  ///Animated Feature Card
   Widget _animatedFeatureCard(
     BuildContext context, {
     required IconData icon,

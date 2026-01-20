@@ -86,30 +86,66 @@ flutter:
     - assets/3dModels/mint.glb
     - assets/3dModels/calendula.glb
     - assets/images/ginger1.jpg
+    - assets/images/ginger2.jpg
     - assets/images/licorice1.jpg
+    - assets/images/licorice2.jpg
     - assets/images/turmeric1.jpg
+    - assets/images/turmeric2.jpg
     - assets/images/amla1.jpg
+    - assets/images/amla2.jpg
     - assets/images/ashwagandha1.jpg
+    - assets/images/ashwagandha2.jpg
     - assets/images/aloe1.jpg
-    - assets/images/amla1.jpg
+    - assets/images/aloe2.jpg
     - assets/images/arnica1.jpg
+    - assets/images/arnica2.jpg
     - assets/images/bala1.jpg
+    - assets/images/bala2.jpg
     - assets/images/brahmi1.jpg
+    - assets/images/brahmi2.jpg
     - assets/images/calendula1.jpg
+    - assets/images/calendula2.jpg
     - assets/images/cucumber1.jpg
+    - assets/images/cucumber2.jpg
     - assets/images/fennel1.jpg
     - assets/images/fennel2.jpg
     - assets/images/guduchi1.jpg
+    - assets/images/guduchi2.jpg
     - assets/images/guggul1.jpg
+    - assets/images/guggul2.jpg
     - assets/images/haritaki1.jpg
+    - assets/images/haritaki2.jpg
     - assets/images/jatamansi1.jpg
+    - assets/images/jatamansi2.jpg
     - assets/images/lemon1.jpg
+    - assets/images/lemon2.jpg
     - assets/images/kutki1.jpg
+    - assets/images/kutki2.jpg
     - assets/images/licorice2.jpg
     - assets/images/manjistha1.jpg
     - assets/images/manjistha2.jpg
     - assets/images/neem1.jpg
     - assets/images/neem2.jpg
+    - assets/images/nilavembu1.jpg
+    - assets/images/nilavembu2.jpg
+    - assets/images/nuxvomica1.jpg
+    - assets/images/nuxvomica2.jpg
+    - assets/images/pippali1.jpg
+    - assets/images/pippali2.jpg
+    - assets/images/punarnava1.jpg
+    - assets/images/punarnava2.jpg
+    - assets/images/rose1.jpg
+    - assets/images/rose2.jpg
+    - assets/images/senna1.jpg
+    - assets/images/senna2.jpg
+    - assets/images/shankhpushpi1.jpg
+    - assets/images/shankhpushpi2.jpg
+    - assets/images/tulsi1.jpg
+    - assets/images/tulsi2.jpg
+    - assets/images/thuthuvalai1.jpg
+    - assets/images/thuthuvalai2.jpg
+    - assets/images/vacha1.jpg
+    - assets/images/vacha2.jpg
 
    
   # An image asset can refer to one or more resolution-specific "variants", see
