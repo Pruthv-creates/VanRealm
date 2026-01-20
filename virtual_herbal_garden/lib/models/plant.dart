@@ -2,6 +2,7 @@ class Plant {
   final String id;
   final String commonName;
   final String botanicalName;
+  final String description;
   final List<String> ayushSystems;
   final List<String> medicinalProperties;
   final List<String> therapeuticUses;
@@ -15,6 +16,7 @@ class Plant {
     required this.id,
     required this.commonName,
     required this.botanicalName,
+    required this.description,
     required this.ayushSystems,
     required this.medicinalProperties,
     required this.therapeuticUses,
@@ -32,6 +34,7 @@ class Plant {
       id: id,
       commonName: data['commonName'] ?? '',
       botanicalName: data['botanicalName'] ?? '',
+      description: data['description'] ?? '',
       ayushSystems: List<String>.from(data['ayushSystems'] ?? []),
       medicinalProperties: List<String>.from(data['medicinalProperties'] ?? []),
       therapeuticUses: List<String>.from(data['therapeuticUses'] ?? []),

@@ -277,6 +277,18 @@ class _HomePageState extends State<HomePage>
                     );
                   },
                 ),
+                const SizedBox(height: 10),
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.update),
+                  label: const Text('Update Descriptions'),
+                  onPressed: () async {
+                    await DescriptionUpdateService().updatePlantDescriptions();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text("Descriptions updated successfully!")),
+                    );
+                  },
+                ),
               ],
             ),
           ),
