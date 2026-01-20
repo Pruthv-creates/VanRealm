@@ -3,13 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:virtual_herbal_garden/models/plant.dart';
 import 'package:virtual_herbal_garden/pages/plant_details_page.dart';
 import '../database/services/cart_service.dart';
+import '../database/services/order_service.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
 
   @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  final CartService cartService = CartService();
+  List<String> cartIds = [];
+
+  @override
   Widget build(BuildContext context) {
-    final CartService cartService = CartService();
     final colors = Theme.of(context).colorScheme;
 
     return Scaffold(
@@ -21,7 +29,7 @@ class CartPage extends StatelessWidget {
       body: StreamBuilder<List<String>>(
         stream: cartService.cartPlantIdsStream(),
         builder: (context, snapshot) {
-          final cartIds = snapshot.data ?? [];
+          cartIds = snapshot.data ?? [];
 
           if (cartIds.isEmpty) {
             return const Center(
@@ -61,15 +69,10 @@ class CartPage extends StatelessWidget {
                     ),
                     child: ListTile(
                       contentPadding: const EdgeInsets.all(12),
-                      leading: const Icon(
-                        Icons.local_florist,
-                        size: 36,
-                      ),
+                      leading: const Icon(Icons.local_florist, size: 36),
                       title: Text(
                         plant.commonName,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: const TextStyle(fontWeight: FontWeight.w600),
                       ),
                       subtitle: Text(plant.botanicalName),
                       trailing: IconButton(
@@ -77,6 +80,8 @@ class CartPage extends StatelessWidget {
                         color: Colors.redAccent,
                         onPressed: () async {
                           await cartService.removeFromCart(plant.id);
+
+                          if (!context.mounted) return;
 
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -104,28 +109,24 @@ class CartPage extends StatelessWidget {
         },
       ),
 
-      /// 🛍 PLACE ORDER BUTTON (UI ONLY FOR NOW)
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 14),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
-            ),
-            backgroundColor: colors.primary,
-          ),
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("Order feature coming soon 🚀"),
-              ),
-            );
-          },
-          child: const Text(
-            "Place Order",
-            style: TextStyle(fontSize: 16),
-          ),
+        child: ElevatedButton.icon(
+          icon: const Icon(Icons.shopping_bag),
+          label: const Text("Place Order"),
+          onPressed: cartIds.isEmpty
+              ? null
+              : () async {
+                  await OrderService().placeOrder(cartIds);
+
+                  if (!context.mounted) return;
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Order placed successfully"),
+                    ),
+                  );
+                },
         ),
       ),
     );
