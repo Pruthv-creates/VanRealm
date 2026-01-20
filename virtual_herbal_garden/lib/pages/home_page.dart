@@ -345,7 +345,7 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  /// 🌿 Theme Chip
+  ///  Theme Chip
   Widget _themeChip(BuildContext context, String theme) {
     final colors = Theme.of(context).colorScheme;
 
