@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Chatbot from "./components/Chatbot";
 import Home from "./pages/Home";
 import ExplorePlants from "./pages/ExplorePlants";
 import PlantDetail from "./pages/PlantDetail";
@@ -66,6 +67,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
+          <Chatbot />
         </div>
       </Router>
     </CartProvider>
