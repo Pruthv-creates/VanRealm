@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { User } from "lucide-react";
+import { User, Phone } from "lucide-react";
 import { auth, db } from "../firebase";
 import {
   createUserWithEmailAndPassword,
@@ -106,8 +106,8 @@ const UserLoginPage = () => {
         <div className="login-footer">
           <div>
             {!isSignup && (
-            <button className="login-link">Forgot password?</button>
-          )}
+              <button className="login-link">Forgot password?</button>
+            )}
           </div>
 
           <button
@@ -129,13 +129,13 @@ const UserLoginPage = () => {
 
         <div className="login-social">
           <SocialButton>
-            <img src="https://www.svgrepo.com/show/475656/google-color.svg" />
+            <Phone size={24} color="#4CAF50" />
           </SocialButton>
           <SocialButton>
-            <img src="https://www.svgrepo.com/show/303128/apple-logo.svg" />
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" />
           </SocialButton>
           <SocialButton>
-            <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" />
+            <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook" />
           </SocialButton>
         </div>
       </div>
