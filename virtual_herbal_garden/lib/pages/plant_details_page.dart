@@ -75,7 +75,7 @@ class _PlantDetailsPageState extends State<PlantDetailsPage> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(right: 10),
-                        child: Image.network(widget.plant.images[index]),
+                        child: Image.asset(widget.plant.images[index]),
                       );
                     },
                   ),
