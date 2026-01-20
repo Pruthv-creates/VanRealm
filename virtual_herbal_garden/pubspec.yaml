@@ -78,9 +78,32 @@ flutter:
     - assets/3dModels/lemon.glb
     - assets/3dModels/mint.glb
     - assets/3dModels/calendula.glb
-    - assets/images/Acorus-calamus1.jpg
-    - assets/images/Acorus-calamus2.jpg
+    - assets/images/ginger1.jpg
+    - assets/images/licorice1.jpg
+    - assets/images/turmeric1.jpg
+    - assets/images/amla1.jpg
+    - assets/images/ashwagandha1.jpg
     - assets/images/aloe1.jpg
+    - assets/images/amla1.jpg
+    - assets/images/arnica1.jpg
+    - assets/images/bala1.jpg
+    - assets/images/brahmi1.jpg
+    - assets/images/calendula1.jpg
+    - assets/images/cucumber1.jpg
+    - assets/images/fennel1.jpg
+    - assets/images/fennel2.jpg
+    - assets/images/guduchi1.jpg
+    - assets/images/guggul1.jpg
+    - assets/images/haritaki1.jpg
+    - assets/images/jatamansi1.jpg
+    - assets/images/lemon1.jpg
+    - assets/images/kutki1.jpg
+    - assets/images/licorice2.jpg
+    - assets/images/manjistha1.jpg
+    - assets/images/manjistha2.jpg
+    - assets/images/neem1.jpg
+    - assets/images/neem2.jpg
+
    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
