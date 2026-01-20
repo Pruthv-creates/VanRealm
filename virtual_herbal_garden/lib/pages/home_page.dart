@@ -191,7 +191,7 @@ class _HomePageState extends State<HomePage>
                     _animatedFeatureCard(
                       context,
                       icon: Icons.bookmark,
-                      title: 'Bookmarks_',
+                      title: 'Bookmark_',
                       subtitle: 'Save & revisit',
                       delay: 240,
                       onTap: () {
