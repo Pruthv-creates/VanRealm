@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
-import { 
-  analyzeDietaryNeeds, 
-  filterPlantsByNeeds, 
+import {
+  analyzeDietaryNeeds,
+  filterPlantsByNeeds,
   formatPlantRecommendation,
-  chatbotResponses 
+  chatbotResponses
 } from '../services/chatbotService';
 import { Send, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -164,7 +164,7 @@ const Chatbot = () => {
           alignItems: 'center',
         }}
       >
-        <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '600' }}>
+        <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '600', color: '#ffffff' }}>
           🌿 Herbal Guide Chatbot
         </h3>
         <button

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, X, PlusCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import PlantCard from '../components/PlantCard';
 
 const ExplorePlants = () => {
+    const [searchParams] = useSearchParams();
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
@@ -43,6 +44,31 @@ const ExplorePlants = () => {
 
         fetchPlants();
     }, []);
+
+    // Apply category filter from URL parameter
+    useEffect(() => {
+        const categoryParam = searchParams.get('category');
+        if (categoryParam) {
+            // Map the category name from URL to the filter options
+            const categoryMapping = {
+                'Immune': 'Immunity',
+                'Digestion': 'Digestion',
+                'Respiratory': 'Respiratory',
+                'Skin Care': 'Skin Care',
+                'Stress & Brain': 'Stress & Brain Health'
+            };
+
+            const mappedCategory = categoryMapping[categoryParam] || categoryParam;
+
+            // Check if this category exists in filterOptions and apply it
+            if (filterOptions.healthCategory.includes(mappedCategory)) {
+                setFilters(prev => ({
+                    ...prev,
+                    healthCategory: [mappedCategory]
+                }));
+            }
+        }
+    }, [searchParams]);
 
     const handleFilterChange = (category, value) => {
         setFilters(prev => {

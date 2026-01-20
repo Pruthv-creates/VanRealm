@@ -82,35 +82,41 @@ const Home = () => {
                     justifyContent: 'center'
                 }}>
                     {categories.map((cat) => (
-                        <div key={cat.name} style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            padding: '24px',
-                            backgroundColor: 'var(--color-white)',
-                            borderRadius: 'var(--radius-md)',
-                            boxShadow: 'var(--shadow-soft)',
-                            cursor: 'pointer',
-                            transition: 'transform 0.3s',
-                            border: `1px solid ${cat.color}`
-                        }}
-                            className="category-card"
+                        <Link
+                            key={cat.name}
+                            to={`/explore?category=${encodeURIComponent(cat.name)}`}
+                            style={{ textDecoration: 'none' }}
                         >
                             <div style={{
-                                width: '64px',
-                                height: '64px',
-                                borderRadius: '50%',
-                                backgroundColor: cat.color,
                                 display: 'flex',
+                                flexDirection: 'column',
                                 alignItems: 'center',
-                                justifyContent: 'center',
-                                marginBottom: '16px',
-                                color: 'var(--color-primary)'
-                            }}>
-                                {cat.icon}
+                                padding: '24px',
+                                backgroundColor: 'var(--color-white)',
+                                borderRadius: 'var(--radius-md)',
+                                boxShadow: 'var(--shadow-soft)',
+                                cursor: 'pointer',
+                                transition: 'transform 0.3s',
+                                border: `1px solid ${cat.color}`
+                            }}
+                                className="category-card"
+                            >
+                                <div style={{
+                                    width: '64px',
+                                    height: '64px',
+                                    borderRadius: '50%',
+                                    backgroundColor: cat.color,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    marginBottom: '16px',
+                                    color: 'var(--color-primary)'
+                                }}>
+                                    {cat.icon}
+                                </div>
+                                <span style={{ fontWeight: '600', color: 'var(--color-text-dark)', textAlign: 'center' }}>{cat.name}</span>
                             </div>
-                            <span style={{ fontWeight: '600', color: 'var(--color-text-dark)', textAlign: 'center' }}>{cat.name}</span>
-                        </div>
+                        </Link>
                     ))}
                 </div>
                 <style>{`
