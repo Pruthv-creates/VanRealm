@@ -146,6 +146,9 @@ flutter:
     - assets/images/thuthuvalai2.jpg
     - assets/images/vacha1.jpg
     - assets/images/vacha2.jpg
+    - assets/images/shatavari1.jpg
+    - assets/images/shatavari2.jpg
+    - assets/images/vidanga1.jpg
 
    
   # An image asset can refer to one or more resolution-specific "variants", see
