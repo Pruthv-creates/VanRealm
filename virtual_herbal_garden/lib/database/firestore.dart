@@ -102,11 +102,15 @@ class FirestoreService {
   }
 
   /// Get single plant
-  Future<Plant> getPlantById(String id) async {
-    final doc = await _db.collection('plants').doc(id).get();
-    return Plant.fromFirestore(doc.id, doc.data()!);
-  }
+  Future<Plant?> getPlantById(String id) async {
+  final doc =
+      await FirebaseFirestore.instance.collection('plants').doc(id).get();
 
+  if (!doc.exists) return null;
+
+  return Plant.fromFirestore(doc.id, doc.data()!);
+  }
+  
   Future<Plant?> getPlantByScientificName(
       String scientificName) async {
     final snapshot = await _db
