@@ -11,7 +11,7 @@ const Home = () => {
 
     // Health Categories Data
     const categories = [
-        { name: 'Immunity', icon: <Shield size={32} />, color: '#E8F5E9' },
+        { name: 'Immune', icon: <Shield size={32} />, color: '#E8F5E9' },
         { name: 'Digestion', icon: <Utensils size={32} />, color: '#FFF3E0' },
         { name: 'Respiratory', icon: <Wind size={32} />, color: '#E3F2FD' },
         { name: 'Skin Care', icon: <Smile size={32} />, color: '#F3E5F5' },

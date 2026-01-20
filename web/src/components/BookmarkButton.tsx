@@ -1,26 +1,73 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { auth, db } from "../firebase";
-import { updateDoc, doc, arrayUnion } from "firebase/firestore";
+import { updateDoc, doc, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
 import { Bookmark } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
 
 const BookmarkButton = ({ plantId }: { plantId: string }) => {
+    const [isSaved, setIsSaved] = useState(false);
+
+    useEffect(() => {
+        const checkBookmark = async () => {
+            const uid = auth.currentUser?.uid;
+            if (!uid) return;
+
+            const userDoc = await getDoc(doc(db, "Users", uid));
+            const bookmarks = userDoc.data()?.bookmarks || [];
+            setIsSaved(bookmarks.includes(plantId));
+        };
+
+        checkBookmark();
+    }, [plantId]);
+
     const handleBookmark = async () => {
         const uid = auth.currentUser?.uid;
-        if (!uid) return alert("Please log in first");
+        if (!uid) {
+            toast.error("Please log in first", {
+                position: "top-right",
+                duration: 3000,
+            });
+            return;
+        }
+
+        if (isSaved) {
+            // Remove bookmark
+            await updateDoc(doc(db, "Users", uid), {
+                bookmarks: arrayRemove(plantId),
+            });
+
+            setIsSaved(false);
+            toast("Removed from bookmarks!", {
+                position: "top-right",
+                duration: 3000,
+                icon: "🗑️",
+            });
+            return;
+        }
+
         await updateDoc(doc(db, "Users", uid), {
             bookmarks: arrayUnion(plantId),
         });
-        alert("Bookmarked!");
+
+        setIsSaved(true);
+        toast.success("Added to bookmarks!", {
+            position: "top-right",
+            duration: 3000,
+        });
     };
 
     return (
-        <button
-            className="btn btn-outline"
-            style={{ gap: '8px' }}
-            onClick={handleBookmark}
-        >
-            <Bookmark size={18} /> Save
-        </button>
+        <>
+            <Toaster />
+            <button
+                className="btn btn-outline"
+                style={{ gap: '8px' }}
+                onClick={handleBookmark}
+            >
+                <Bookmark size={18} fill={isSaved ? "currentColor" : "none"} />
+                {isSaved ? "Saved" : "Save"}
+            </button>
+        </>
     );
 };
 
