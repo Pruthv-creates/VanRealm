@@ -106,4 +106,27 @@ class FirestoreService {
     final doc = await _db.collection('plants').doc(id).get();
     return Plant.fromFirestore(doc.id, doc.data()!);
   }
+
+  Future<Plant?> getPlantByScientificName(
+      String scientificName) async {
+    final snapshot = await _db
+        .collection('plants')
+        .where(
+          'botanicalName',
+          isEqualTo: scientificName,
+        )
+        .limit(1)
+        .get();
+
+    if (snapshot.docs.isEmpty) return null;
+
+    final doc = snapshot.docs.first;
+
+    
+    return Plant.fromFirestore(
+      doc.id,
+      doc.data(),
+    );
+  }
+
 }

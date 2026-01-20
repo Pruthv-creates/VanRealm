@@ -11,6 +11,7 @@ import 'package:virtual_herbal_garden/pages/explore_plants.dart';
 import 'package:virtual_herbal_garden/pages/guided_tour_page.dart';
 import 'package:virtual_herbal_garden/pages/tour_detail_page.dart';
 import 'package:virtual_herbal_garden/pages/bookmarks_page.dart';
+import 'package:virtual_herbal_garden/screens/identify_plant_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         '/guided_tours': (context) => const GuidedToursPage(),
         '/guided_tour_detail': (context) => const GuidedTourDetailPage(),
         '/bookmarks_page': (context) => const BookmarksPage(),
-        
+        '/identify_plant': (context) => const IdentifyPlantScreen(),    
 
       },
     );
