@@ -1,0 +1,71 @@
+/* Layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 60px 0;
+}
+
+/* Login Required */
+.login-required {
+    text-align: center;
+}
+
+.bookmark-icon {
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+/* Titles */
+.page-title {
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    margin-bottom: 40px;
+    color: var(--color-text-light);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px;
+    background-color: #ffffff;
+    border-radius: 12px;
+}
+
+/* Grid */
+.plants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.btn-outline {
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    background: transparent;
+}
+
+.btn-primary:hover,
+.btn-outline:hover {
+    opacity: 0.9;
+}
