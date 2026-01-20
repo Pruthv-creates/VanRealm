@@ -83,10 +83,13 @@ const Chatbot = () => {
       const recommendedPlants = filterPlantsByNeeds(allPlants, needs);
 
       if (recommendedPlants.length > 0) {
+        // Limit to top 3 most relevant plants
+        const topPlants = recommendedPlants.slice(0, 3);
+
         // Add individual plant recommendations
-        for (let i = 0; i < recommendedPlants.length; i++) {
+        for (let i = 0; i < topPlants.length; i++) {
           await new Promise(resolve => setTimeout(resolve, 400));
-          addMessage(formatPlantRecommendation(recommendedPlants[i]), false, recommendedPlants[i]);
+          addMessage(formatPlantRecommendation(topPlants[i]), false, topPlants[i]);
         }
       }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Leaf } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -201,6 +201,36 @@ const TourDetail = () => {
     const tour = TOURS_DATA[id];
     const [activeIndex, setActiveIndex] = useState(0);
     const [windowWidth, setWindowWidth] = useState(0);
+    const [isMusicPlaying, setIsMusicPlaying] = useState(true);
+    const audioRef = useRef(null);
+
+    // Background music effect
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (audio) {
+            audio.volume = 0.3; // Set volume to 30%
+            audio.play().catch(err => console.log('Audio autoplay prevented:', err));
+        }
+
+        return () => {
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        };
+    }, []);
+
+    const toggleMusic = () => {
+        const audio = audioRef.current;
+        if (audio) {
+            if (isMusicPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+            setIsMusicPlaying(!isMusicPlaying);
+        }
+    };
 
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);
@@ -235,7 +265,30 @@ const TourDetail = () => {
                     <ArrowLeft size={24} /> Back to Tours
                 </button>
                 <h1 className="text-2xl font-bold text-white tracking-widest uppercase">{tour.title}</h1>
+
+                {/* Music Toggle Button */}
+                <button
+                    onClick={toggleMusic}
+                    className="flex items-center gap-2 text-white hover:text-green-400 transition-colors"
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1rem' }}
+                    title={isMusicPlaying ? "Pause Music" : "Play Music"}
+                >
+                    {isMusicPlaying ? (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+                        </svg>
+                    ) : (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    )}
+                </button>
             </div>
+
+            {/* Background Music Audio Element */}
+            <audio ref={audioRef} loop>
+                <source src="/assets/audio/tour-background.mp3" type="audio/mpeg" />
+            </audio>
 
             {/* TOP SECTION: CONTENT (60%) */}
             <div className="relative z-10 flex-1 flex items-center justify-center px-4 md:px-16 py-8 mt-10">
