@@ -78,7 +78,10 @@ flutter:
     - assets/3dModels/lemon.glb
     - assets/3dModels/mint.glb
     - assets/3dModels/calendula.glb
-
+    - assets/images/Acorus-calamus1.jpg
+    - assets/images/Acorus-calamus2.jpg
+    - assets/images/aloe1.jpg
+   
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

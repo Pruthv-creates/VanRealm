@@ -19,11 +19,13 @@ class _ExplorePlantsPageState extends State<ExplorePlantsPage> {
 
   final List<String> categories = [
     'All',
-    'Immunity',
+    'Immune',
     'Respiratory',
     'Digestive',
     'Skin',
-    'Stress Relief',
+    'Stress',
+    'Sleep disorders',
+    'Anxiety',
   ];
 
   @override
@@ -41,7 +43,7 @@ class _ExplorePlantsPageState extends State<ExplorePlantsPage> {
       ),
       body: Column(
         children: [
-          // 🔍 Search Bar
+          //  Search Bar
           Padding(
             padding: const EdgeInsets.all(12),
             child: TextField(
@@ -55,7 +57,7 @@ class _ExplorePlantsPageState extends State<ExplorePlantsPage> {
             ),
           ),
 
-          // 🏷 Category Filter
+          // Category Filter
           SizedBox(
             height: 45,
             child: ListView.builder(
@@ -81,7 +83,7 @@ class _ExplorePlantsPageState extends State<ExplorePlantsPage> {
 
           const SizedBox(height: 10),
 
-          // 🌱 Plant Grid
+          //  Plant Grid
           Expanded(
             child: StreamBuilder<List<Plant>>(
               stream: _plantService.getPlants(),

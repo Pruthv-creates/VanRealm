@@ -48,7 +48,12 @@ class PlantDetailsPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(right: 10),
-                    child: Image.network(plant.images[index]),
+                    child: SizedBox(
+                      width: 500,
+                      child: Image.asset(
+                        plant.images[index],width: double.infinity,fit: BoxFit.cover
+                        ),
+                      ),
                   );
                 },
               ),

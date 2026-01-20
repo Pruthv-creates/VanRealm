@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                /// 🌿 HERO CARD
+                /// hero card
                 Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage>
 
                 const SizedBox(height: 26),
 
-                /// 🔍 SEARCH
+                ///  SEARCH
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Search plants, diseases, or uses',
@@ -157,7 +157,7 @@ class _HomePageState extends State<HomePage>
 
                 const SizedBox(height: 32),
 
-                /// 🚀 FEATURES
+                /// FEATURES
                 Text(
                   'Explore & Learn',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -194,7 +194,9 @@ class _HomePageState extends State<HomePage>
                       title: 'Bookmarks_',
                       subtitle: 'Save & revisit',
                       delay: 240,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/bookmarks_page');
+                      },
                     ),
                   ],
                 ),

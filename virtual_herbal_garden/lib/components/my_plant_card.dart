@@ -20,13 +20,13 @@ class PlantCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 🌿 Image
+            // Image
             Expanded(
               child: plant.images.isNotEmpty
                   ? ClipRRect(
                       borderRadius:
                           const BorderRadius.vertical(top: Radius.circular(16)),
-                      child: Image.network(
+                      child: Image.asset(
                         plant.images.first,
                         width: double.infinity,
                         fit: BoxFit.cover,
