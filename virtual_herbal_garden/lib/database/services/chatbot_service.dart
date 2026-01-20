@@ -106,8 +106,8 @@ class ChatbotService {
     'greeting': 'Hello! 👋 Welcome to the Virtual Herbal Garden Chatbot. I\'m here to help you find the perfect medicinal plants for your dietary needs. What health concerns or dietary needs would you like to address today?',
     'intro': 'I can help you find plants that support:\n• Digestive health\n• Immunity\n• Respiratory health\n• Stress relief\n• Skin health\n• Joint pain relief\n• Nausea relief\n\nPlease tell me about your health concern or dietary need.',
     'not_understood': 'I didn\'t quite understand that. Could you tell me more about your health concern? For example, are you looking for help with digestion, immunity, stress, skin health, or something else?',
-    'found_plants': 'Great! I\'ve found some plants that can help with your concern. Below are the recommended plants:',
-    'single_plant': 'Perfect! I recommend this plant:',
+    'found_plants': 'I understand, I\'ve found some plants that can help with your concern. Below are the recommended plants:',
+    'single_plant': 'I recommend this plant:',
     'no_plants': 'I\'m sorry, I couldn\'t find specific plants matching your description. Could you try describing your concern differently?',
     'more_help': 'Would you like to explore another health concern? Just tell me what else you\'d like help with!',
   };
