@@ -3,6 +3,9 @@ import { auth, db } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc, getDocs } from "firebase/firestore";
+import "./HandlePlantOperations.css";
+
+import AdminPlantCard from "./AdminPlantCard";
 
 const HandlePlantOperations = () => {
   const [user, setUser] = useState<any>(null);
@@ -39,50 +42,18 @@ const HandlePlantOperations = () => {
   };
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-6">Admin Dashboard</h1>
-      {user && <p className="mb-4">Welcome {user.email}</p>}
-
-      <button
-        onClick={handleLogout}
-        className="mb-6 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-      >
-        Logout
-      </button>
-
-      <h2 className="text-xl font-semibold mb-4">Add New Plant</h2>
-      <form onSubmit={handleAddPlant} className="space-y-4 mb-8">
-        <input
-          type="text"
-          placeholder="Plant Name"
-          value={newPlant.name}
-          onChange={(e) => setNewPlant({ ...newPlant, name: e.target.value })}
-          className="border px-3 py-2 rounded-md w-full"
-        />
-        <textarea
-          placeholder="Description"
-          value={newPlant.description}
-          onChange={(e) =>
-            setNewPlant({ ...newPlant, description: e.target.value })
-          }
-          className="border px-3 py-2 rounded-md w-full"
-        />
-        <button
-          type="submit"
-          className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
-        >
-          Add Plant
-        </button>
-      </form>
-
-      <h2 className="text-xl font-semibold mb-4">Existing Plants</h2>
-      <ul className="space-y-3">
+    <div className="plant-ops-container">
+      {/* Existing Plants */}
+      <div className="plants-grid">
         {plants.map((plant) => (
-          <li key={plant.id} className="border p-3 rounded-md">
-            <strong>{plant.name}</strong> — {plant.description}
-          </li>
+          <AdminPlantCard
+            key={plant.id}
+            plant={plant}
+            onEdit={(p) => console.log("Edit", p)}
+            onDelete={(p) => console.log("Delete", p)}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
