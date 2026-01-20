@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Leaf, User, Bookmark } from 'lucide-react';
+import { Menu, X, Leaf, User, Bookmark, PlusCircle } from 'lucide-react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,8 +15,8 @@ const Navbar = () => {
         { name: 'Home', path: '/' },
         { name: 'Explore Plants', path: '/explore' },
         { name: 'Tours', path: '/tours' },
-        // "My Bookmarks" now has its own distinct path for saved plants
-        { name: 'My Bookmarks', path: '/bookmarks', icon: <Bookmark size={16} /> }, 
+        { name: 'My Bookmarks', path: '/bookmarks', icon: <Bookmark size={16} /> },
+        { name: 'Contribute', path: '/add-plant', icon: <PlusCircle size={16} /> },
     ];
 
     return (
@@ -65,24 +65,24 @@ const Navbar = () => {
                                 }}
                             >
                                 {/* Show a small icon next to bookmarks if defined */}
-                                {link.icon && link.icon} 
+                                {link.icon && link.icon}
                                 {link.name}
                             </Link>
                         </li>
                     ))}
-                    
+
                     {/* Vertical Divider */}
                     <div style={{ width: '1px', height: '24px', backgroundColor: 'rgba(0,0,0,0.1)' }}></div>
 
                     {/* Profile / Admin Link */}
                     <li>
-                        <Link 
-                            to="/profile" 
+                        <Link
+                            to="/profile"
                             title="User & Admin Profile"
-                            style={{ 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                gap: '5px' 
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '5px'
                             }}
                         >
                             <div style={{
@@ -90,8 +90,8 @@ const Navbar = () => {
                                 borderRadius: '50%',
                                 backgroundColor: location.pathname === '/profile' ? 'var(--color-primary)' : 'rgba(0,0,0,0.05)',
                                 color: location.pathname === '/profile' ? 'white' : 'var(--color-text-dark)',
-                                display: 'flex', 
-                                alignItems: 'center', 
+                                display: 'flex',
+                                alignItems: 'center',
                                 justifyContent: 'center',
                                 transition: 'all 0.3s ease'
                             }}>

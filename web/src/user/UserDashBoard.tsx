@@ -83,9 +83,7 @@ const UserDashboard = () => {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
           <div>
-            <h1 className="text-4xl font-bold text-[#556b2f] mb-2 font-serif">
-              My Garden
-            </h1>
+
             <p className="text-[#556b2f]/80 text-lg">
               Welcome back, <span className="font-semibold">{username}</span>!
             </p>

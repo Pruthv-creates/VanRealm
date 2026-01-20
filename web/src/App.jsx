@@ -8,6 +8,7 @@ import PlantDetail from "./pages/PlantDetail";
 import Tours from "./pages/Tours";
 import TourDetail from "./pages/TourDetail";
 import Bookmarks from "./pages/Bookmarks";
+import AddPlant from "./pages/AddPlant";
 
 import AdminLoginPage from "./admin/AdminLoginPage";
 import AdminDashboard from "./admin/AdminDashboard";
@@ -33,6 +34,7 @@ function App() {
             <Route path="/plant/:id" element={<PlantDetail />} />
             <Route path="/tours" element={<Tours />} />
             <Route path="/tours/:id" element={<TourDetail />} />
+            <Route path="/add-plant" element={<AddPlant />} />
 
             {/* User routes */}
             <Route path="/user-login" element={<UserLoginPage />} />
