@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We use the camera to identify medicinal plants</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We use photos to identify medicinal plants</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save plant identification images</string>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

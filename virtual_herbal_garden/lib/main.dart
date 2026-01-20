@@ -12,10 +12,12 @@ import 'package:virtual_herbal_garden/pages/guided_tour_page.dart';
 import 'package:virtual_herbal_garden/pages/tour_detail_page.dart';
 import 'package:virtual_herbal_garden/pages/bookmarks_page.dart';
 import 'package:virtual_herbal_garden/screens/identify_plant_screen.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 

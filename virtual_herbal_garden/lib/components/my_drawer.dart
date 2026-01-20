@@ -13,7 +13,7 @@ class MyDrawer extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            /// 🌿 HEADER
+            /// HEADER
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 24),
               child: Column(
@@ -44,7 +44,7 @@ class MyDrawer extends StatelessWidget {
                     'Explore • Learn • Preserve',
                     style: TextStyle(
                       fontSize: 13,
-                      color: colors.onPrimaryContainer.withOpacity(0.8),
+                      color: colors.inversePrimary,
                     ),
                   ),
                 ],
@@ -83,13 +83,24 @@ class MyDrawer extends StatelessWidget {
               },
             ),
 
+            /// 🌱 IDENTIFY PLANT (NEW)
+            _drawerTile(
+              context,
+              icon: Icons.camera_alt_rounded,
+              title: 'Identify Plant',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/identify_plant');
+              },
+            ),
+
             _drawerTile(
               context,
               icon: Icons.bookmark,
               title: 'Bookmarks',
               onTap: () {
                 Navigator.pop(context);
-                // TODO: bookmarks page
+                Navigator.pushNamed(context, '/bookmarks_page');
               },
             ),
 

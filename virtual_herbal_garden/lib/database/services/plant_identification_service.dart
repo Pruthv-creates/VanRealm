@@ -1,13 +1,21 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class PlantIdentificationService {
-  static const String _apiKey = "YOUR_PLANTNET_API_KEY";
+  /// 🔑 Load API key from .env
+  final String _apiKey = dotenv.env['PLANTNET_API_KEY'] ?? '';
 
+  /// 🌿 Identify plant from image
   Future<String?> identifyPlant(File imageFile) async {
+    if (_apiKey.isEmpty) {
+      throw Exception('PLANTNET_API_KEY not found in .env');
+    }
+
     final uri = Uri.parse(
-      "https://my-api.plantnet.org/v2/identify/all?api-key=$_apiKey",
+      'https://my-api.plantnet.org/v2/identify/all?api-key=$_apiKey',
     );
 
     final request = http.MultipartRequest('POST', uri);
@@ -19,20 +27,30 @@ class PlantIdentificationService {
       ),
     );
 
-    try {
-      final response = await request.send();
+    /// Optional but improves accuracy
+    request.fields['organs'] = 'leaf';
 
-      if (response.statusCode == 200) {
-        final responseBody = await response.stream.bytesToString();
+    try {
+      final streamedResponse = await request.send();
+
+      if (streamedResponse.statusCode == 200) {
+        final responseBody =
+            await streamedResponse.stream.bytesToString();
+
         final data = json.decode(responseBody);
 
-        if (data['results'] != null && data['results'].isNotEmpty) {
+        if (data['results'] != null &&
+            data['results'].isNotEmpty) {
           return data['results'][0]['species']
               ['scientificNameWithoutAuthor'];
         }
+      } else {
+        print(
+          'PlantNet failed: ${streamedResponse.statusCode}',
+        );
       }
     } catch (e) {
-      print("PlantNet error: $e");
+      print('PlantNet error: $e');
     }
 
     return null;
