@@ -33,58 +33,91 @@ interface Plant {
 const SAMPLE_PLANTS: Plant[] = [
     {
         id: "sample-1",
-        commonName: "Aloe Vera",
-        botanicalName: "Aloe barbadensis miller",
-        description: "A succulent plant species of the genus Aloe. It is widely distributed, and is considered an invasive species in many world regions. An evergreen perennial, it originates from the Arabian Peninsula, but grows wild in tropical, semi-tropical, and arid climates around the world.",
-        price: 350,
-        stock: 15,
+        commonName: "Ashwagandha",
+        botanicalName: "Withania somnifera",
+        description: "Known as Indian Ginseng, Ashwagandha is a powerful adaptogenic herb used in Ayurveda for stress relief, improving energy, and boosting immunity. The roots are primarily used for medicinal purposes.",
+        price: 299,
+        stock: 25,
         isForSale: true,
-        imageUrl: "https://images.unsplash.com/photo-1628005398270-43896dfa99ae?q=80&w=2070&auto=format&fit=crop",
-        categoryTag: "Medicinal"
+        imageUrl: "/assets/images/ashwagandha1.jpg",
+        categoryTag: "Adaptogen"
     },
     {
         id: "sample-2",
-        commonName: "Tulsi (Holy Basil)",
-        botanicalName: "Ocimum tenuiflorum",
-        description: "Holy basil, also known as Tulsi, is an aromatic perennial plant in the family Lamiaceae. It is native to the Indian subcontinent and widespread as a cultivated plant throughout the Southeast Asian tropics.",
-        price: 150,
-        stock: 42,
+        commonName: "Brahmi",
+        botanicalName: "Bacopa monnieri",
+        description: "A renowned brain tonic in Ayurveda, Brahmi enhances memory, concentration, and cognitive function. It's also known for its calming properties and is used to reduce anxiety and stress.",
+        price: 199,
+        stock: 18,
         isForSale: true,
-        imageUrl: "https://images.unsplash.com/photo-1596547609652-9cf5d8d71321?q=80&w=1974&auto=format&fit=crop",
-        categoryTag: "Sacred"
+        imageUrl: "/assets/images/brahmi1.jpg",
+        categoryTag: "Brain Health"
     },
     {
         id: "sample-3",
-        commonName: "Snake Plant",
-        botanicalName: "Dracaena trifasciata",
-        description: "A species of flowering plant in the family Asparagaceae, native to tropical West Africa from Nigeria east to the Congo. It is most commonly known as the snake plant, Saint George's sword, mother-in-law's tongue, and viper's bowstring hemp.",
-        price: 550,
-        stock: 8,
+        commonName: "Neem",
+        botanicalName: "Azadirachta indica",
+        description: "The 'village pharmacy' of India, Neem has powerful antibacterial, antifungal, and blood-purifying properties. Every part of the plant is used for various medicinal purposes.",
+        price: 249,
+        stock: 30,
         isForSale: true,
-        imageUrl: "https://images.unsplash.com/photo-1599598425947-d352778da795?q=80&w=2069&auto=format&fit=crop",
-        categoryTag: "Air Purifier"
+        imageUrl: "/assets/images/neem1.jpg",
+        categoryTag: "Antibacterial"
     },
     {
         id: "sample-4",
-        commonName: "Mint",
-        botanicalName: "Mentha",
-        description: "Mint is a genus of plants in the family Lamiaceae (mint family). The exact distinction between species is unclear; it is estimated that 13 to 24 species exist. Hybridization between some of the species occurs naturally.",
-        price: 99,
+        commonName: "Turmeric",
+        botanicalName: "Curcuma longa",
+        description: "A golden spice with powerful anti-inflammatory and antioxidant properties. Turmeric is widely used in Ayurveda for joint health, digestion, and skin care. The rhizome is the medicinal part.",
+        price: 149,
         stock: 0,
         isForSale: true,
-        imageUrl: "https://images.unsplash.com/photo-1626466360052-406e30152998?q=80&w=2070&auto=format&fit=crop",
-        categoryTag: "Herb"
+        imageUrl: "/assets/images/turmeric1.jpg",
+        categoryTag: "Anti-inflammatory"
     },
     {
         id: "sample-5",
-        commonName: "Lavender",
-        botanicalName: "Lavandula",
-        description: "Lavandula (common name lavender) is a genus of 47 known species of flowering plants in the mint family, Lamiaceae. It is native to the Old World and is found in Cape Verde and the Canary Islands, and from Europe across to northern and eastern Africa, the Mediterranean, southwest Asia to China (Chaix) and southeast India.",
-        price: 450,
-        stock: 12,
+        commonName: "Amla (Indian Gooseberry)",
+        botanicalName: "Phyllanthus emblica",
+        description: "Rich in Vitamin C and antioxidants, Amla is one of the most important rejuvenating herbs in Ayurveda. It supports immunity, digestion, hair health, and overall vitality.",
+        price: 179,
+        stock: 22,
         isForSale: true,
-        imageUrl: "https://images.unsplash.com/photo-1565578768222-7729177a67f0?q=80&w=2072&auto=format&fit=crop",
-        categoryTag: "Aromatic"
+        imageUrl: "/assets/images/amla1.jpg",
+        categoryTag: "Immunity"
+    },
+    {
+        id: "sample-6",
+        commonName: "Tulsi (Holy Basil)",
+        botanicalName: "Ocimum sanctum",
+        description: "Sacred in Hindu tradition, Tulsi is a powerful adaptogen that supports respiratory health, reduces stress, and boosts immunity. It's known as the 'Queen of Herbs' in Ayurveda.",
+        price: 129,
+        stock: 35,
+        isForSale: true,
+        imageUrl: "/assets/images/tulsi1.jpg",
+        categoryTag: "Sacred"
+    },
+    {
+        id: "sample-7",
+        commonName: "Aloe Vera",
+        botanicalName: "Aloe barbadensis miller",
+        description: "A succulent plant with cooling and healing properties. Aloe Vera is used for skin care, digestive health, and wound healing. The gel from its leaves has numerous medicinal applications.",
+        price: 99,
+        stock: 40,
+        isForSale: true,
+        imageUrl: "/assets/images/aloe1.jpg",
+        categoryTag: "Skin Care"
+    },
+    {
+        id: "sample-8",
+        commonName: "Ginger",
+        botanicalName: "Zingiber officinale",
+        description: "A warming herb excellent for digestion, nausea relief, and inflammation. Ginger is widely used in both culinary and medicinal applications across various traditional medicine systems.",
+        price: 89,
+        stock: 28,
+        isForSale: true,
+        imageUrl: "/assets/images/ginger1.jpg",
+        categoryTag: "Digestive"
     }
 ];
 
@@ -249,10 +282,10 @@ const BuyPlants = () => {
                                                 }
                                             }}
                                             className={`p-3 rounded-2xl transition-all shadow-md flex items-center gap-2 ${addedToCart === plant.id
-                                                    ? "bg-green-500 text-white"
-                                                    : (plant.stock || 0) > 0
-                                                        ? "bg-[#1a4d2e] text-white hover:bg-[#143d23] hover:shadow-lg active:scale-95"
-                                                        : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                                                ? "bg-green-500 text-white"
+                                                : (plant.stock || 0) > 0
+                                                    ? "bg-[#1a4d2e] text-white hover:bg-[#143d23] hover:shadow-lg active:scale-95"
+                                                    : "bg-gray-100 text-gray-400 cursor-not-allowed"
                                                 }`}
                                             disabled={(plant.stock || 0) === 0}
                                         >
