@@ -85,7 +85,7 @@ const UserLoginPage = () => {
       : "Sign in to continue your herbal journey"}
   </p>
 
-                <div className="space-y-5">
+                <div className="space-y-20">
                     {isSignup && (
                         <GlassInput
                             icon={<User size={20} />}
@@ -98,7 +98,7 @@ const UserLoginPage = () => {
                     )}
 
                     <GlassInput
-                        icon={<Mail size={20} />}
+                        icon={null}
                         placeholder="Email address"
                         value={email}
                         onChange={setEmail}
@@ -107,7 +107,7 @@ const UserLoginPage = () => {
                     />
 
                     <GlassInput
-                        icon={<Lock size={20} />}
+                        icon={null}
                         placeholder="Password"
                         value={password}
                         onChange={setPassword}
@@ -121,17 +121,20 @@ const UserLoginPage = () => {
                         </p>
                     )}
 
-                    <button
-                        onClick={handleSubmit}
-                        className="w-full mt-2 py-4 rounded-full
-                        bg-[#4a6b3a] hover:bg-[#3d5a30]
-                        text-white font-semibold text-base
-                        shadow-lg hover:shadow-xl
-                        transition-all duration-300
-                        active:scale-95"
-                    >
-                        {isSignup ? "Sign Up" : "Sign In"}
-                    </button>
+                    <div className="flex justify-center mt-24">
+                        <button
+                            onClick={handleSubmit}
+                            className="w-24 h-14 rounded-md
+                            bg-[#4a6b3a] hover:bg-[#3d5a30]
+                            text-white font-bold text-base tracking-wide
+                            shadow-md hover:shadow-lg
+                            transition-all duration-300
+                            active:scale-95 active:shadow-inner
+                            uppercase flex items-center justify-center"
+                        >
+                            {isSignup ? "Sign Up" : "Sign In"}
+                        </button>
+                    </div>
                 </div>
 
                 {/* Footer Links */}
@@ -209,27 +212,29 @@ const GlassInput = ({
     type,
 }: GlassInputProps) => (
     <div className="relative">
-        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#5f6b5b]">
-            {icon}
-        </span>
+        {icon && (
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#5f6b5b]">
+                {icon}
+            </span>
+        )}
         <input
             type={type}
             value={value}
             onChange={(e) => onChange(e.target.value)}
             onKeyDown={onKeyDown}
             placeholder={placeholder}
-            className="
-w-full rounded-full
-bg-white
-border border-[#bdb8ac]
-pl-16 pr-7 py-5
-text-lg text-[#2d3748]
-placeholder:text-[#8b8b8b]
+            className={`
+w-full rounded-md
+bg-white/95 hover:bg-white
+border-2 border-[#bdb8ac]
+${icon ? 'pl-16' : 'pl-6'} pr-6 py-4
+text-base font-medium text-[#2d3748]
+placeholder:text-[#9b9b9b] placeholder:font-normal placeholder:text-sm
 focus:outline-none
-focus:border-[#4a6b3a]
-focus:ring-2 focus:ring-[#4a6b3a]/30
-transition-all duration-200
-"
+focus:border-[#4a6b3a] focus:bg-white
+focus:ring-2 focus:ring-[#4a6b3a]/20
+transition-all duration-200 shadow-sm
+`}
 
             required
         />
