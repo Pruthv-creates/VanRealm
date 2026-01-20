@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { db, storage } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -8,7 +9,8 @@ import {
     X,
     CheckCircle,
     Loader,
-    AlertCircle
+    AlertCircle,
+    ImagePlus
 } from "lucide-react";
 
 interface AddPlantProps {
@@ -16,6 +18,7 @@ interface AddPlantProps {
 }
 
 const AddPlant = ({ onClose }: AddPlantProps) => {
+    const navigate = useNavigate();
     // --- State Management ---
     const [formData, setFormData] = useState({
         commonName: "",
@@ -144,7 +147,7 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                 )}
 
                 {/* Header Section */}
-                <div className="bg-gradient-to-br from-[#1a4d2e] to-[#0d3d1f] text-white p-8 text-center relative overflow-hidden flex-shrink-0">
+                <div className="bg-gradient-to-br from-[#4a6b3a] to-[#3d5a30] text-white p-8 text-center relative overflow-hidden flex-shrink-0">
                     <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
                         <Leaf size={300} className="absolute -top-10 -right-10 rotate-12" />
                         <Leaf size={200} className="absolute bottom-0 -left-10 -rotate-45" />
@@ -153,13 +156,13 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                     <div className="relative z-10">
                         <div className="flex justify-center items-center gap-3 mb-2">
                             <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                                <Leaf className="w-6 h-6 text-[#95d5b2]" />
+                                <Leaf className="w-6 h-6 text-[#d6d2c7]" />
                             </div>
-                            <h1 className="text-3xl md:text-4xl font-serif font-bold tracking-wide">
+                            <h1 className="text-3xl md:text-4xl font-serif font-bold tracking-wide" style={{ color: '#ffffff' }}>
                                 Contribute to Nature
                             </h1>
                         </div>
-                        <p className="text-[#b7e4c7] italic font-light text-sm md:text-base max-w-2xl mx-auto">
+                        <p className="text-[#e8e4dc] italic font-light text-sm md:text-base max-w-2xl mx-auto">
                             "The best time to plant a tree was 20 years ago. The second best time is now."
                         </p>
                     </div>
@@ -171,9 +174,9 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                         // Success View
                         <div className="text-center py-12 animate-fade-in flex flex-col items-center justify-center h-full">
                             <div className="mx-auto w-24 h-24 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center mb-6 shadow-lg">
-                                <CheckCircle className="text-[#1a4d2e]" size={48} strokeWidth={2.5} />
+                                <CheckCircle className="text-[#5f7a50]" size={48} strokeWidth={2.5} />
                             </div>
-                            <h2 className="text-3xl font-serif font-bold text-[#1a4d2e] mb-4">
+                            <h2 className="text-3xl font-serif font-bold text-[#5f7a50] mb-4">
                                 Thank You!
                             </h2>
                             <p className="text-gray-600 text-lg mb-8 max-w-md mx-auto leading-relaxed">
@@ -181,7 +184,7 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                             </p>
                             <button
                                 onClick={() => setSuccess(false)}
-                                className="bg-gradient-to-r from-[#1a4d2e] to-[#0d3d1f] text-white px-8 py-3 rounded-lg hover:shadow-xl transition-all transform hover:scale-105 shadow-md font-semibold flex items-center gap-2 mx-auto"
+                                className="bg-gradient-to-r from-[#4a6b3a] to-[#3d5a30] text-white px-8 py-3 rounded-lg hover:shadow-xl transition-all transform hover:scale-105 shadow-md font-semibold flex items-center gap-2 mx-auto"
                             >
                                 <Upload size={18} /> Add Another Plant
                             </button>
@@ -194,14 +197,14 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                             {/* FIXED: Changed gap-2 to space-y-1.5 to align vertically with right inputs */}
                             <div className="md:col-span-5 w-full flex flex-col space-y-1.5">
                                 {/* FIXED: Removed justify-center/text-center, added ml-1 to align with right labels */}
-                                <label className="text-xs font-bold text-[#1a4d2e] uppercase tracking-wider flex items-center gap-2 ml-1">
-                                    <Upload size={14} /> Plant Image
+                                <label className="text-xs font-bold text-[#5f7a50] uppercase tracking-wider flex items-center gap-2 ml-1">
+                                    <ImagePlus size={14} /> Plant Image
                                 </label>
                                 <div
                                     className={`relative w-full aspect-[4/5] md:aspect-video md:h-full max-h-[400px] border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center cursor-pointer overflow-hidden group shadow-sm bg-white rounded-none
                                     ${dragActive
-                                            ? "border-[#1a4d2e] bg-[#1a4d2e]/5 shadow-md"
-                                            : "border-gray-300 hover:border-[#1a4d2e]/60 hover:shadow-md hover:bg-white"
+                                            ? "border-[#5f7a50] bg-[#5f7a50]/5 shadow-md"
+                                            : "border-gray-300 hover:border-[#5f7a50]/60 hover:shadow-md hover:bg-white"
                                         }
                                     `}
                                     onDragEnter={handleDrag}
@@ -235,13 +238,13 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                                             </div>
                                         </div>
                                     ) : (
-                                        <div className="text-center p-6 space-y-3">
-                                            <div className="w-16 h-16 bg-[#1a4d2e]/10 text-[#1a4d2e] flex items-center justify-center mx-auto shadow-sm rounded-none">
-                                                <Upload size={28} strokeWidth={2} />
+                                        <div className="flex flex-col items-center justify-center h-full space-y-3">
+                                            <div className="w-20 h-20 bg-gradient-to-br from-[#5f7a50]/10 to-[#5f7a50]/5 text-[#5f7a50] flex items-center justify-center shadow-md rounded-xl border-2 border-[#5f7a50]/20">
+                                                <ImagePlus size={36} strokeWidth={2} />
                                             </div>
-                                            <div className="space-y-1">
-                                                <p className="font-semibold text-gray-700">Upload Photo</p>
-                                                <p className="text-xs text-gray-400">JPG, PNG or GIF (max. 5MB)</p>
+                                            <div className="space-y-1 text-center">
+                                                <p className="font-semibold text-gray-700 text-base">Upload Photo</p>
+                                                <p className="text-xs text-gray-500">JPG, PNG or GIF (max. 5MB)</p>
                                             </div>
                                         </div>
                                     )}
@@ -252,7 +255,7 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                             <div className="md:col-span-7 flex flex-col gap-5">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-1.5">
-                                        <label className="text-xs font-bold text-[#1a4d2e] uppercase tracking-wider ml-1">
+                                        <label className="text-xs font-bold text-[#5f7a50] uppercase tracking-wider ml-1">
                                             Common Name
                                         </label>
                                         <input
@@ -261,12 +264,12 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                                             value={formData.commonName}
                                             onChange={handleChange}
                                             placeholder="e.g. Tulsi"
-                                            className="w-full px-4 py-3 bg-white border border-gray-200 rounded-none focus:ring-2 focus:ring-[#1a4d2e]/20 focus:border-[#1a4d2e] outline-none transition-all shadow-sm text-sm border-b-2"
+                                            className="w-full px-4 py-3 bg-white border border-gray-200 rounded-none focus:ring-2 focus:ring-[#5f7a50]/20 focus:border-[#5f7a50] outline-none transition-all shadow-sm text-sm border-b-2"
                                             required
                                         />
                                     </div>
                                     <div className="space-y-1.5">
-                                        <label className="text-xs font-bold text-[#1a4d2e] uppercase tracking-wider ml-1">
+                                        <label className="text-xs font-bold text-[#5f7a50] uppercase tracking-wider ml-1">
                                             Botanical Name
                                         </label>
                                         <input
@@ -275,14 +278,14 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                                             value={formData.botanicalName}
                                             onChange={handleChange}
                                             placeholder="e.g. Ocimum"
-                                            className="w-full px-4 py-3 bg-white border border-gray-200 rounded-none focus:ring-2 focus:ring-[#1a4d2e]/20 focus:border-[#1a4d2e] outline-none transition-all shadow-sm text-sm italic border-b-2"
+                                            className="w-full px-4 py-3 bg-white border border-gray-200 rounded-none focus:ring-2 focus:ring-[#5f7a50]/20 focus:border-[#5f7a50] outline-none transition-all shadow-sm text-sm italic border-b-2"
                                             required
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-1.5">
-                                    <label className="text-xs font-bold text-[#1a4d2e] uppercase tracking-wider ml-1">
+                                    <label className="text-xs font-bold text-[#5f7a50] uppercase tracking-wider ml-1">
                                         Description
                                     </label>
                                     <textarea
@@ -291,13 +294,13 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                                         onChange={handleChange}
                                         rows={3}
                                         placeholder="Plant description..."
-                                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-none focus:ring-2 focus:ring-[#1a4d2e]/20 focus:border-[#1a4d2e] outline-none transition-all resize-none shadow-sm text-sm border-b-2"
+                                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-none focus:ring-2 focus:ring-[#5f7a50]/20 focus:border-[#5f7a50] outline-none transition-all resize-none shadow-sm text-sm border-b-2"
                                         required
                                     />
                                 </div>
 
                                 <div className="space-y-1.5">
-                                    <label className="text-xs font-bold text-[#1a4d2e] uppercase tracking-wider ml-1">
+                                    <label className="text-xs font-bold text-[#5f7a50] uppercase tracking-wider ml-1">
                                         Medicinal Uses
                                     </label>
                                     <textarea
@@ -306,7 +309,7 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                                         onChange={handleChange}
                                         rows={2}
                                         placeholder="e.g. Colds, Stress..."
-                                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-none focus:ring-2 focus:ring-[#1a4d2e]/20 focus:border-[#1a4d2e] outline-none transition-all resize-none shadow-sm text-sm border-b-2"
+                                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-none focus:ring-2 focus:ring-[#5f7a50]/20 focus:border-[#5f7a50] outline-none transition-all resize-none shadow-sm text-sm border-b-2"
                                         required
                                     />
                                 </div>
@@ -336,7 +339,14 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                                     <div className="grid grid-cols-2 gap-4">
                                         <button
                                             type="button"
-                                            onClick={onClose}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                if (onClose) {
+                                                    onClose();
+                                                } else {
+                                                    navigate(-1);
+                                                }
+                                            }}
                                             className="w-full bg-transparent border-2 border-gray-300 text-gray-600 font-bold py-3.5 rounded-none hover:bg-gray-50 hover:text-gray-800 hover:border-gray-400 transition-all duration-200 flex items-center justify-center gap-2"
                                         >
                                             <X size={20} /> Cancel
@@ -344,7 +354,7 @@ const AddPlant = ({ onClose }: AddPlantProps) => {
                                         <button
                                             type="submit"
                                             disabled={loading}
-                                            className="w-full bg-[#1a4d2e] hover:bg-[#143d23] text-white font-bold py-3.5 rounded-none shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                            className="w-full bg-[#4a6b3a] hover:bg-[#3d5a30] text-white font-bold py-3.5 rounded-none shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                                         >
                                             {loading ? (
                                                 <>
