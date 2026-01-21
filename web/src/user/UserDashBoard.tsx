@@ -215,40 +215,41 @@ const UserDashboard = () => {
                   visits.length > 0 ? (
                     <div key={period} className="period-section">
                       <h3 className="period-title">
-                        <Calendar size={20} />
                         {period}
                       </h3>
-                      <div className="visits-grid">
+                      <div className="visits-list">
                         {visits.map((visit, index) => (
                           <Link
                             key={`${visit.plantId}-${index}`}
                             to={`/plant/${visit.plantId}`}
-                            className="visit-card"
+                            className="visit-item"
                           >
-                            <div className="visit-card-content">
-                              <div className="plant-image">
+                            <div className="visit-item-left">
+                              <div className="plant-favicon">
                                 {visit.plantImage ? (
                                   <img
                                     src={visit.plantImage}
                                     alt={visit.plantName}
                                   />
                                 ) : (
-                                  <div className="plant-image-placeholder">
+                                  <div className="plant-favicon-placeholder">
                                     🌿
                                   </div>
                                 )}
                               </div>
-                              <div className="visit-info">
+                              <div className="visit-text">
                                 <h4 className="plant-name">
                                   {visit.plantName}
                                 </h4>
-                                <p className="visit-time">
-                                  {formatTime(visit.visitedAt)}
-                                </p>
-                                <p className="visit-date">
-                                  {formatDate(visit.visitedAt)}
+                                <p className="visit-url">
+                                  vanrealm.com/plant/{visit.plantId}
                                 </p>
                               </div>
+                            </div>
+                            <div className="visit-item-right">
+                              <p className="visit-timestamp">
+                                {formatTime(visit.visitedAt)}
+                              </p>
                             </div>
                           </Link>
                         ))}
