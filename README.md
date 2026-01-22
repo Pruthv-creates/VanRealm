@@ -2,7 +2,7 @@
 
 A comprehensive digital platform for exploring medicinal plants and traditional AYUSH (Ayurveda, Yoga, Unani, Siddha, Homeopathy) knowledge. Experience an immersive journey through herbal wisdom with interactive 3D models, guided tours, and AI-powered plant recommendations.
 
-[![Live Demo](https://img.shields.io/badge/demo-live-green.svg)](https://your-demo-url.com)
+[![Live Demo](https://img.shields.io/badge/demo-live-green.svg)]((https://vanrealm.vercel.app/))
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 <img width="1621" height="993" alt="image" src="https://github.com/user-attachments/assets/174fc500-a21e-4a5b-91da-bf1835b91e39" />
