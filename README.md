@@ -2,10 +2,19 @@
 
 A comprehensive digital platform for exploring medicinal plants and traditional AYUSH (Ayurveda, Yoga, Unani, Siddha, Homeopathy) knowledge. Experience an immersive journey through herbal wisdom with interactive 3D models, guided tours, and AI-powered plant recommendations.
 
-[![Live Demo](https://img.shields.io/badge/demo-live-green.svg)]((https://vanrealm.vercel.app/))
+[![Live Demo](https://img.shields.io/badge/demo-live-green.svg)](https://vanrealm.vercel.app/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-<img width="1621" height="993" alt="image" src="https://github.com/user-attachments/assets/174fc500-a21e-4a5b-91da-bf1835b91e39" />
+<p align="center">
+  <a href="https://vanrealm.vercel.app/" target="_blank">
+    <img
+      width="1621"
+      height="993"
+      alt="VanRealm Live Preview"
+      src="https://github.com/user-attachments/assets/174fc500-a21e-4a5b-91da-bf1835b91e39"
+    />
+  </a>
+</p>
 
 ---
 
@@ -283,7 +292,17 @@ This project is licensed under the MIT License.
 
 ## 👥 Contributors
 
-- **Pruthv** - Lead Developer
+- **Pruthviraj** – Lead Developer  
+  🔗 https://github.com/Pruthv-creates
+
+- **Dhairya** – App Developer  
+  🔗 https://github.com/DhairyaJ-ani
+
+- **Ayush** – Web Developer  
+  🔗 https://github.com/JourneyCodesAyush
+
+- **Vishesh** – Web Developer  
+  🔗 https://github.com/vishesh-ienc
 
 ---
 
@@ -297,6 +316,8 @@ This project is licensed under the MIT License.
 ---
 
 ## 📧 Contact
+
+[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?style=for-the-badge&logo=gmail)](mailto:pruthvirajkachate2005@gmail.com)
 
 suggestions are welcome
 
